@@ -19,31 +19,9 @@ void select_rom() {
     zelda64::open_file_dialog([](bool success, const std::filesystem::path& path) {
         if (success) {
             recomp::RomValidationError rom_error = recomp::select_rom(path, supported_games[0].game_id);
-            switch (rom_error) {
-                case recomp::RomValidationError::Good:
-                    mm_rom_valid = true;
-                    model_handle.DirtyVariable("mm_rom_valid");
-                    break;
-                case recomp::RomValidationError::FailedToOpen:
-                    recompui::message_box("Failed to open ROM file.");
-                    break;
-                case recomp::RomValidationError::NotARom:
-                    recompui::message_box("This is not a valid ROM file.");
-                    break;
-                case recomp::RomValidationError::IncorrectRom:
-                    recompui::message_box("This ROM is not the correct game.");
-                    break;
-                case recomp::RomValidationError::NotYet:
-                    recompui::message_box("This game isn't supported yet.");
-                    break;
-                case recomp::RomValidationError::IncorrectVersion:
-                    recompui::message_box(
-                            "This ROM is the correct game, but the wrong version.\nThis project requires the NTSC-U N64 version of the game.");
-                    break;
-                case recomp::RomValidationError::OtherError:
-                    recompui::message_box("An unknown error has occurred.");
-                    break;
-            }
+            mm_rom_valid = true;
+            model_handle.DirtyVariable("mm_rom_valid");
+            break;
         }
     });
 }
