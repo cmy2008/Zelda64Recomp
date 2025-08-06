@@ -16,7 +16,7 @@ on:
         default: '4e6f4e52989aca69739880b40b9f988357f15d10ca03284377b81f1502463ff5'
     secrets:
       ZRE_REPO_WITH_PAT:
-        required: true
+        required: false
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -50,8 +50,9 @@ jobs:
           key: ${{ matrix.os }}-z64re-ccache-${{ matrix.type }}-x64-${{ inputs.N64RECOMP_COMMIT }}
       - name: Prepare Build
         run: |-
-          git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
-          unzip zre/files.zip > /dev/null 2>&1
+          # git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
+          # unzip zre/files.zip > /dev/null 2>&1
+          echo ""
       - name: Build N64Recomp & RSPRecomp
         run: |
           git clone https://github.com/Mr-Wiseguy/N64Recomp.git --recurse-submodules N64RecompSource
@@ -145,9 +146,7 @@ jobs:
           echo ::endgroup::
       - name: Prepare Build
         run: |-
-          git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
-          ./zre/process.sh
-          cp ./zre/mm_shader_cache.bin ./shadercache/
+          wget https://github.com/Zelda64Recomp/Zelda64Recomp/raw/26f5fcc95226ec5372c61f1aaf5f2b96d243d51b/shadercache/mm_shader_cache.bin -O ./shadercache/mm_shader_cache.bin
       - name: Build N64Recomp & RSPRecomp
         run: |
           git clone https://github.com/Mr-Wiseguy/N64Recomp.git --recurse-submodules N64RecompSource
@@ -223,8 +222,9 @@ jobs:
 
       - name: Prepare Build
         run: |-
-          git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
-          ./zre/process.sh
+          # git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
+          # ./zre/process.sh
+          echo ""
 
       - name: Prepare Flatpak
         run: |
@@ -276,9 +276,9 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - name: Prepare Build
         run: |-
-          git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
-          ./zre/process.ps1
-          cp ./zre/mm_shader_cache.bin ./shadercache/
+          # git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
+          # ./zre/process.ps1
+          wget https://github.com/Zelda64Recomp/Zelda64Recomp/raw/26f5fcc95226ec5372c61f1aaf5f2b96d243d51b/shadercache/mm_shader_cache.bin -O ./shadercache/mm_shader_cache.bin
       - name: Build N64Recomp & RSPRecomp
         run: |
           git clone https://github.com/Mr-Wiseguy/N64Recomp.git --recurse-submodules N64RecompSource
@@ -367,9 +367,9 @@ jobs:
           parameters: '.github/macos/macports.yaml'
       - name: Prepare Build
         run: |-
-          git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
-          ./zre/process.sh
-          cp ./zre/mm_shader_cache.bin ./shadercache/
+          # git clone ${{ secrets.ZRE_REPO_WITH_PAT }}
+          # ./zre/process.sh
+          wget https://github.com/Zelda64Recomp/Zelda64Recomp/raw/26f5fcc95226ec5372c61f1aaf5f2b96d243d51b/shadercache/mm_shader_cache.bin -O ./shadercache/mm_shader_cache.bin
       - name: Build N64Recomp & RSPRecomp
         run: |
           git clone https://github.com/Mr-Wiseguy/N64Recomp.git --recurse-submodules N64RecompSource
