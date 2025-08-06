@@ -297,11 +297,11 @@ jobs:
           # Copy N64Recomp & RSPRecomp to root directory
           cp cmake-build/N64Recomp.exe ..
           cp cmake-build/RSPRecomp.exe ..
-      - name: Run N64Recomp & RSPRecomp
-        run: |
-          ./N64Recomp.exe us.rev1.toml
-          ./RSPRecomp.exe aspMain.us.rev1.toml
-          ./RSPRecomp.exe njpgdspMain.us.rev1.toml
+      # - name: Run N64Recomp & RSPRecomp
+      #   run: |
+      #     ./N64Recomp.exe us.rev1.toml
+      #     ./RSPRecomp.exe aspMain.us.rev1.toml
+      #     ./RSPRecomp.exe njpgdspMain.us.rev1.toml
       - name: Build ZeldaRecomp
         run: |-
           # enable ccache
